@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title id="keystroke test">hi</title>
+    
+</head>
+<body>
+
+        <input onkeypress="count()"></input> calls count
+        <p id="number">0</p>
+        <p id="startnumb"></p>
+        <p id="stopnumb"></p>
+        <p id="timeused"></p>
+
+        
+        <script>
+        var pressTimes = 50;
+        var counter = 0;
+        var start = 0;
+        var stop = 0;
+        var diff = 0;
+
+        function count() {
+
+        counter += 1;
+                
+        if(counter == 1){
+
+                start = time();
+                document.getElementById("startnumb").innerHTML = start;
+                }
+
+        if(counter == pressTimes){
+
+                stop = time();
+                document.getElementById("stopnumb").innerHTML =  stop;
+                counter = 0;
+                tpk(start, stop);                
+                }
+
+        document.getElementById("number").innerHTML = counter;
+             
+        }
+        function time(){
+
+                var time = Number(new Date());
+                return time;
+        }
+        
+        function tpk(start, stop){
+               
+               diff = (stop - start) / 1000 / pressTimes;
+               document.getElementById("timeused").innerHTML = diff + " " + "seconds per keystroke.";
+       }
+          
+        </script>
+</body>
+</html>
+
